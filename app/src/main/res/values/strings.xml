@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">JackCoiffure</string>
+    <string name="login">Connexion</string>
+
+    <string name="register">Inscription</string>
+    <string name="message">Bienvenue</string>
+    <string name="email">Adresse mail</string>
+    <string name="mdp">mdp</string>
+
+    <string name="register_title">Inscription</string>
+    <string name="pseudo">Pseudo</string>
+    <string name="password">mdp</string>
+    <string name="password2">Confirmation mdp</string>
+</resources>
