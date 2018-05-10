@@ -11,4 +11,9 @@
     <string name="pseudo">Pseudo</string>
     <string name="password">mdp</string>
     <string name="password2">Confirmation mdp</string>
+
+    <string name="home">Home</string>
+    <string name="rdv">Prendre rendez-vous</string>
+    <string name="main_title">Jack Coiffure</string>
+
 </resources>
