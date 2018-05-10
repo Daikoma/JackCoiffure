@@ -11,6 +11,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,38 +39,32 @@ import java.util.Map;
 
                 try {
                     JSONObject json = new JSONObject(response);
-                    boolean error = json.getBoolean("error");
+                    Boolean error = json.getBoolean("error");
 
-                    if (!error){
-                        // L'inscription est bonne
-                        callback.onSuccess("Vous êtes bien inscrit");
+                    if (!error)
+                    {
+                        callback.onSuccess("vous êtes bien inscrit");
                     }else{
                         JSONObject messages = json.getJSONObject("message");
-                        if(messages.has("pseudo")){
+
+                        if (messages.has("pseudo")){
                             errors.put("pseudo",messages.getString("pseudo"));
                         }
-
-                        if(messages.has("email")){
+                        if (messages.has("email")){
                             errors.put("email",messages.getString("email"));
                         }
-
-                        if(messages.has("password")){
+                        if (messages.has("password")){
                             errors.put("password",messages.getString("password"));
                         }
+
                         callback.inputErrors(errors);
-
-
                     }
-
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                Log.d("APP", response);
 
-                                    }
+            }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -97,7 +92,7 @@ import java.util.Map;
 
         public interface  RegisterCallback{
            void onSuccess(String message);
-           void inputErrors(Map<String, String> errors);
+           void inputErrors(Map<String,String> errors);
            void onError(String message);
 
         }
