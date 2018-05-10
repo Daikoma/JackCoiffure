@@ -6,25 +6,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
- public class Planning extends AppCompatActivity {
+public class HomePage extends AppCompatActivity {
 
-    private Button btn_login,btn_register;
+    private Button btn_rdv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_planning);
+        setContentView(R.layout.home_page);
 
-        btn_login = (Button) findViewById(R.id.btn_login);
-        btn_register = (Button) findViewById(R.id.btn_register);
+        btn_rdv = (Button) findViewById(R.id.btn_rdv);
 
-        btn_register.setOnClickListener(new View.OnClickListener() {
+        btn_rdv.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                Intent intent = new Intent(getApplicationContext(), Planning.class);
                 startActivity(intent);
             }
         });

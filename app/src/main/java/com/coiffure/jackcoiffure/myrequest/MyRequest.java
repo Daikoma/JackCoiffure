@@ -90,11 +90,10 @@ import java.util.Map;
           queue.add(request);
         }
 
-        public interface  RegisterCallback{
+        public interface  RegisterCallback {
            void onSuccess(String message);
            void inputErrors(Map<String,String> errors);
            void onError(String message);
-
         }
 
         }
