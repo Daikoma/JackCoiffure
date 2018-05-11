@@ -35,7 +35,7 @@ import java.util.Map;
                         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                 Map<String, String> errors = new HashMap<>();
+                Map<String, String> errors = new HashMap<>();
 
                 try {
                     JSONObject json = new JSONObject(response);
