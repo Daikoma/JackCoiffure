@@ -15,5 +15,7 @@
     <string name="home">Home</string>
     <string name="rdv">Prendre rendez-vous</string>
     <string name="main_title">Jack Coiffure</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="login_title">Connexion</string>
 
 </resources>

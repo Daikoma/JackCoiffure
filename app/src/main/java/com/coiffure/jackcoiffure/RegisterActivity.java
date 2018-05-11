@@ -1,5 +1,6 @@
 package com.coiffure.jackcoiffure;
 
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,6 +53,10 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(String message) {
                             pb_loader.setVisibility(View.GONE);
+                            Intent intent = new Intent(getApplicationContext(),Planning.class);
+                            startActivity(intent);
+                            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+                            finish();
 
 
                         }
@@ -65,12 +70,23 @@ public class RegisterActivity extends AppCompatActivity {
                             } else {
                                 til_pseudo.setErrorEnabled(false);
                             }
+                            if (errors.get("email") != null) {
+                                til_email.setError(errors.get("email"));
+                            } else {
+                                til_email.setErrorEnabled(false);
+                            }
+                            if (errors.get("password") != null) {
+                                til_password.setError(errors.get("password"));
+                            } else {
+                                til_password.setErrorEnabled(false);
+                            }
 
                         }
 
                         @Override
                         public void onError(String message) {
                             pb_loader.setVisibility(View.GONE);
+                            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
 
                         }
                     });

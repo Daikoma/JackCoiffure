@@ -15,6 +15,9 @@ import android.widget.Button;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planning);
 
+
+
+
         btn_login = (Button) findViewById(R.id.btn_login);
         btn_register = (Button) findViewById(R.id.btn_register);
 
@@ -25,6 +28,16 @@ import android.widget.Button;
             public void onClick(View v) {
 
                 Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+        btn_login.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
