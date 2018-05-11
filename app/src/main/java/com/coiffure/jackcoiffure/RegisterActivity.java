@@ -54,8 +54,8 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onSuccess(String message) {
                             pb_loader.setVisibility(View.GONE);
                             Intent intent = new Intent(getApplicationContext(),Planning.class);
-                            intent.putExtra("REGISTER",message);
                             startActivity(intent);
+                            Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                             finish();
 
 

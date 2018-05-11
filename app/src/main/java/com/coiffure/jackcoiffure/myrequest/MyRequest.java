@@ -96,4 +96,67 @@ import java.util.Map;
            void onError(String message);
         }
 
+
+
+        public void connexion(final String pseudo, final String password, final LoginCallback callback){
+            String url = "http://192.168.1.35/espacemembre/login.php";
+
+            StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+
+                    JSONObject json= null;
+                    try {
+                        json = new JSONObject(response);
+                        Boolean error= json.getBoolean("error");
+
+                        if (!error){
+                            String id= json.getString("id");
+                            String pseudo= json.getString("pseudo");
+                            callback.onSuccess(id,pseudo);
+
+                        }else{
+                            callback.onError(json.getString("message"));
+                        }
+
+                    } catch (JSONException e) {
+                        callback.onError("Une erreur s'est produite");
+                        e.printStackTrace();
+                    }
+
+
+
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    if (error instanceof NetworkError) {
+                        callback.onError("Impossible de se connecter");
+                    } else if (error instanceof VolleyError) {
+                        callback.onError("Une erreur s'est produite");
+                    }
+                }
+            }){
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+
+                    Map<String, String> map = new HashMap<>();
+                    map.put("pseudo", pseudo);
+                    map.put("password", password);
+
+
+                    return map;
+                }
+            };
+            queue.add(request);
+
+
         }
+
+        public interface LoginCallback{
+                void onSuccess(String id, String pseudo);
+                void onError(String message);
+        }
+
+     }
