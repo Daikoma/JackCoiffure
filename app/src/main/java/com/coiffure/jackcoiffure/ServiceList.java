@@ -30,7 +30,7 @@ public class ServiceList extends AppCompatActivity {
         ArrayList<Service> services = new ArrayList<>();
 
         try {
-            String myurl= "http://192.168.1.23/list_services/getServices.php";
+            String myurl= "http://192.168.1.35/list_services/getServices.php";
 
             URL url = new URL(myurl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

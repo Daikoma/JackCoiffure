@@ -9,11 +9,19 @@ import android.widget.Button;
  public class Planning extends AppCompatActivity {
 
     private Button btn_login,btn_register;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planning);
+
+        sessionManager = new SessionManager(this);
+        if (sessionManager.isLogged()){
+            Intent intent = new Intent(this, HomePage.class);
+            startActivity(intent);
+            finish();
+        }
 
 
 
