@@ -17,5 +17,6 @@
     <string name="main_title">Jack Coiffure</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="login_title">Connexion</string>
+    <string name="logout">Déconnexion</string>
 
 </resources>

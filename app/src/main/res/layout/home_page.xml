@@ -21,10 +21,18 @@
         android:textStyle="bold"
         android:textColor="@color/blackColor"/>
 
+    <TextView
+        android:id="@+id/tv_pseudo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="129dp"
         tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="151dp">
 
@@ -39,5 +47,16 @@
             tools:layout_editor_absoluteY="153dp" />
 
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="108dp"
+        android:text="@string/logout" />
+
 
 </RelativeLayout>
