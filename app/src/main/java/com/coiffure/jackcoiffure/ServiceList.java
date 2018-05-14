@@ -1,4 +1,4 @@
-package com.coiffure.jackcoiffure;
+/*package com.coiffure.jackcoiffure;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -79,61 +79,12 @@ public class ServiceList extends AppCompatActivity {
 
                 } else if (error instanceof VolleyError) {
 
-<<<<<<< HEAD
                 }
             }
         });
 
         return services;
     }
-}
+}*/
 
 
-        /*try {
-            String myurl= "http://192.168.1.23/list_services/getServices.php";
-=======
-        try {
-            String myurl= "http://192.168.1.35/list_services/getServices.php";
->>>>>>> 89d7655e49a30dbeb7d4db1ee56dde073f7a1771
-
-
-
-            URL url = new URL(myurl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.connect();
-            InputStream inputStream = connection.getInputStream();
-
-            String result = InputStreamOperations.InputStreamToString(inputStream);
-
-            // On récupère le JSON complet
-            JSONObject jsonObject = new JSONObject(result);
-
-            // On récupère le tableau d'objets qui nous concernent
-            JSONArray array = new JSONArray(jsonObject.getString("services"));
-
-            // Pour tous les objets on récupère les infos
-            for (int i = 0; i < array.length(); i++) {
-                // On récupère un objet JSON du tableau
-                JSONObject obj = new JSONObject(array.getString(i));
-
-                // On fait le lien Service - Objet JSON
-                Service service = new Service();
-                service.setName(obj.getString("name"));
-                service.setDescription(obj.getString("description"));
-                service.setPrice(obj.getInt("price"));
-                // On ajoute la personne à la liste
-                services.add(service);
-
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // On retourne la liste des personnes
-        return services;
-
-    }
-
-}
-*/
