@@ -21,10 +21,14 @@
         android:textStyle="bold"
         android:textColor="@color/blackColor"/>
 
-    <TextView android:id="@+id/service_list"
+    <TextView
+        android:id="@+id/service_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"/>
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/main_title"
+        android:layout_marginTop="82dp"
+        android:textColor="@android:color/black" />
 
     <Button android:id="@+id/button_parse"
         android:layout_width="wrap_content"
@@ -32,6 +36,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="24dp"
-        android:text="Biteuh" />
+        android:text="Load Services" />
 
 </RelativeLayout>

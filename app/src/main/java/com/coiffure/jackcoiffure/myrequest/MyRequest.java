@@ -9,6 +9,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.coiffure.jackcoiffure.Service;
 import com.coiffure.jackcoiffure.globalVariables.Global;
@@ -174,24 +175,31 @@ import java.util.Map;
             //String url = Global.ip_serveur+"list_services/getServices.php";
             String url = Global.ip_serveur_LS+"getServices.php";
 
-            StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                JSONArray jsonArray = response.getJSONArray("services");
 
+                                for (int i=0; i < jsonArray.length(); i++) {
+                                    JSONObject service = jsonArray.getJSONObject(i);
+
+                                    String name = service.getString("name");
+                                    String description = service.getString("description");
+                                    int price = service.getInt("price");
+
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
                 @Override
-                public void onResponse(String response) {
-                    JSONArray json = null;
-                    try {
-                        json = new JSONArray(response);
-                        JSONObject services = json.getJSONObject("services");
+                public void onErrorResponse(VolleyError error) {
 
+                }
+            });
+        }*/
 
-
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                })
-            }
-            */
-        }
+    }
