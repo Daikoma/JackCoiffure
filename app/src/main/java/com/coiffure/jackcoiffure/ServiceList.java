@@ -20,6 +20,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
 
+
 public class ServiceList extends AppCompatActivity {
 
     public List service_list;
