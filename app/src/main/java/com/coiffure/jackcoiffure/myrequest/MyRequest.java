@@ -10,11 +10,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.coiffure.jackcoiffure.Service;
+import com.coiffure.jackcoiffure.globalVariables.Global;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +33,9 @@ import java.util.Map;
 
            public void register(final String pseudo, final String email, final String password, final String password2, final RegisterCallback callback){
 
-                        String url = "http://192.168.1.35/espacemembre/register.php";
+                        //String url = "http://5.196.213.78/jack_coiffure/espacemembre/register.php";
+                        //String url = Global.ip_serveur+"espacemembre/register.php";
+                        String url = Global.ip_serveur_EM+"register.php";
 
                         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -99,7 +104,10 @@ import java.util.Map;
 
 
         public void connexion(final String pseudo, final String password, final LoginCallback callback){
-            String url = "http://192.168.1.35/espacemembre/login.php";
+            //String url = "http://192.168.1.35/espacemembre/login.php";
+            String url = "http://192.168.1.26/espacemembre/login.php";
+            //String url = Global.ip_serveur+"espacemembre/login.php";
+            //String url = Global.ip_serveur_EM+"login.php";
 
             StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
@@ -159,4 +167,31 @@ import java.util.Map;
                 void onError(String message);
         }
 
-     }
+
+        /*public void getServices() {
+
+            //String url = "http://192.168.1.23/list_services/getServices.php";
+            //String url = Global.ip_serveur+"list_services/getServices.php";
+            String url = Global.ip_serveur_LS+"getServices.php";
+
+            StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
+                @Override
+                public void onResponse(String response) {
+                    JSONArray json = null;
+                    try {
+                        json = new JSONArray(response);
+                        JSONObject services = json.getJSONObject("services");
+
+
+
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                })
+            }
+            */
+        }

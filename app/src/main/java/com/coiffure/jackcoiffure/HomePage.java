@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.coiffure.jackcoiffure.globalVariables.Global;
+
 public class HomePage extends AppCompatActivity {
 
     private Button btn_rdv, btn_logout;
