@@ -79,7 +79,6 @@ public class ServiceList extends AppCompatActivity {
 
                 } else if (error instanceof VolleyError) {
 
-<<<<<<< HEAD
                 }
             }
         });
@@ -91,10 +90,10 @@ public class ServiceList extends AppCompatActivity {
 
         /*try {
             String myurl= "http://192.168.1.23/list_services/getServices.php";
-=======
+
         try {
             String myurl= "http://192.168.1.35/list_services/getServices.php";
->>>>>>> 89d7655e49a30dbeb7d4db1ee56dde073f7a1771
+
 
 
 
