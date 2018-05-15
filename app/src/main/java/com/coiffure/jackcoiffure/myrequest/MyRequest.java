@@ -106,9 +106,9 @@ import java.util.Map;
 
         public void connexion(final String pseudo, final String password, final LoginCallback callback){
             //String url = "http://192.168.1.35/espacemembre/login.php";
-            String url = "http://192.168.1.26/espacemembre/login.php";
+            //String url = "http://192.168.1.26/espacemembre/login.php";
             //String url = Global.ip_serveur+"espacemembre/login.php";
-            //String url = Global.ip_serveur_EM+"login.php";
+            String url = Global.ip_serveur_EM+"login.php";
 
             StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override

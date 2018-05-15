@@ -31,7 +31,7 @@ public class HomePage extends AppCompatActivity {
             textView.setText(pseudo);
         }
 
-      /*  btn_rdv.setOnClickListener(new View.OnClickListener() {
+        btn_rdv.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
@@ -40,7 +40,7 @@ public class HomePage extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ServiceList.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
