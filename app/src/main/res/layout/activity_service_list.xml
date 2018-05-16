@@ -15,7 +15,7 @@
         android:layout_marginTop="11dp"
         android:text="@string/main_title"
         android:textAlignment="center"
-        android:textColor="@color/blackColor"
+
         android:textSize="45sp"
         android:textStyle="bold" />
 
