@@ -40,8 +40,7 @@ public class TimeTable extends AppCompatActivity {
     private String pseudo;
     private String til_service;
     private String til_day;
-    private String hour;
-    private String pseudo;
+
 
     private SessionManager sessionManager;
 
@@ -72,7 +71,7 @@ public class TimeTable extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);
         data = new ArrayList<>();
 
-        items = new String[] {"9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "14:00", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30"};
+        items = new String[] {"9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30"};
 
 
 
@@ -84,49 +83,23 @@ public class TimeTable extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 hour = items[position]+":00";
                 Toast.makeText(TimeTable.this, hour, Toast.LENGTH_SHORT).show();
-
-                //Le taff et là et dans MyRequest
-                request.take_rdv(service, day, hour, pseudo, new MyRequest.RegisterCallback() {
+                request.take_rdv(service, day, hour, pseudo, new MyRequest.TimeCallback() {
                     @Override
                     public void onSuccess(String message) {
-                        //pb_loader.setVisibility(View.GONE);
-                        //Intent intent = new Intent(getApplicationContext(),Planning.class);
-                        //startActivity(intent);
-                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(getApplicationContext(), HomePage.class);
+                        startActivity(intent);
+                        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                         finish();
-
-
-                    }
-
-                    @Override
-                    public void inputErrors(Map<String, String> errors) {
-                        //pb_loader.setVisibility(View.GONE);
-
-                        /*if (errors.get("pseudo") != null) {
-                            til_pseudo.setError(errors.get("pseudo"));
-                        } else {
-                            til_pseudo.setErrorEnabled(false);
-                        }
-                        if (errors.get("email") != null) {
-                            til_email.setError(errors.get("email"));
-                        } else {
-                            til_email.setErrorEnabled(false);
-                        }
-                        if (errors.get("password") != null) {
-                            til_password.setError(errors.get("password"));
-                        } else {
-                            til_password.setErrorEnabled(false);
-                        }*/
-
                     }
 
                     @Override
                     public void onError(String message) {
-                        //pb_loader.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
 
                     }
                 });
+
+
 
 
                     }

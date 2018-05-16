@@ -206,43 +206,61 @@ import java.util.Map;
             });
         }*/
 
-        /*public void take_rdv(final String date){
+            public void take_rdv(final String service, final String day, final String hour, final String pseudo, final TimeCallback callback){
 
-            //String url = "http://5.196.213.78/jack_coiffure/espacemembre/register.php";
-            //String url = Global.ip_serveur+"espacemembre/register.php";
-            String url = Global.ip_serveur_RDV+"insertion_rendezvous.php";
+                String url = Global.ip_serveur_RDV+"insertion_rendezvous.php";
 
-            StringRequest request = new StringRequest(Request.Method.POST, url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Map<String, String> errors = new HashMap<>();
+                StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Map<String, String> errors = new HashMap<>();
 
-                            try {
-                                JSONObject json = new JSONObject(response);
-                                Boolean error = json.getBoolean("error");
+                        try {
+                            JSONObject json = new JSONObject(response);
+                            Boolean error = json.getBoolean("error");
 
-                                JSONObject rdv = json.getJSONObject("date");
+                            if (!error)
+                            {
+                                callback.onSuccess("Rendez-vous enregistre");
+                            }else{
+                                JSONObject messages = json.getJSONObject("message");
 
-                                if (rdv.has("pseudo")) {
-                                        errors.put("pseudo",rdv.getString("pseudo"));
+                                if (messages.has("rdv")){
+                                    errors.put("rdv",messages.getString("rdv"));
                                 }
-                                if (rdv.has("email")){
-                                    errors.put("email",rdv.getString("email"));
-                                }
-                                if (rdv.has("password")){
-                                    errors.put("password",rdv.getString("password"));
-                                }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
-
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
 
-            });
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (error instanceof NetworkError) {
+                            callback.onError("Impossible de se connecter");
+                        } else if (error instanceof VolleyError) {
+                            callback.onError("Une erreur s'est produite");
+                        }
+                    }
+                }){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
 
-            queue.add(request);
-        }*/
+                        Map<String, String> map = new HashMap<>();
+                        map.put("service", service);
+                        map.put("hour", hour);
+                        map.put("day", day);
+                        map.put("pseudo", pseudo);
+                        return map;
+                    }
+                };
+                queue.add(request);
+            }
+
+            public interface TimeCallback{
+                void onSuccess(String message);
+                void onError(String message);
+            }
 
     }
