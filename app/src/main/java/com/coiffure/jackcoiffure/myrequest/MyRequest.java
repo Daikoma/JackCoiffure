@@ -18,8 +18,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
         public class MyRequest {
@@ -69,9 +72,8 @@ import java.util.Map;
                     e.printStackTrace();
                 }
 
-
             }
-        }, new Response.ErrorListener() {
+            }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 if (error instanceof NetworkError) {
@@ -160,7 +162,6 @@ import java.util.Map;
             };
             queue.add(request);
 
-
         }
 
         public interface LoginCallback{
@@ -169,7 +170,8 @@ import java.util.Map;
         }
 
 
-        /*public void getServices() {
+        //TODO : définir getServices dans ce fichier.
+        /*public void getServices(Context context) {
 
             //String url = "http://192.168.1.23/list_services/getServices.php";
             //String url = Global.ip_serveur+"list_services/getServices.php";
@@ -189,6 +191,8 @@ import java.util.Map;
                                     String description = service.getString("description");
                                     int price = service.getInt("price");
 
+                                    context.data;
+
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -200,6 +204,45 @@ import java.util.Map;
 
                 }
             });
+        }*/
+
+        /*public void take_rdv(final String date){
+
+            //String url = "http://5.196.213.78/jack_coiffure/espacemembre/register.php";
+            //String url = Global.ip_serveur+"espacemembre/register.php";
+            String url = Global.ip_serveur_RDV+"insertion_rendezvous.php";
+
+            StringRequest request = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Map<String, String> errors = new HashMap<>();
+
+                            try {
+                                JSONObject json = new JSONObject(response);
+                                Boolean error = json.getBoolean("error");
+
+                                JSONObject rdv = json.getJSONObject("date");
+
+                                if (rdv.has("pseudo")) {
+                                        errors.put("pseudo",rdv.getString("pseudo"));
+                                }
+                                if (rdv.has("email")){
+                                    errors.put("email",rdv.getString("email"));
+                                }
+                                if (rdv.has("password")){
+                                    errors.put("password",rdv.getString("password"));
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+            });
+
+            queue.add(request);
         }*/
 
     }

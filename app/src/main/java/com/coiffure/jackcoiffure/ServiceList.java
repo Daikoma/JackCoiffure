@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -19,9 +20,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import com.coiffure.jackcoiffure.globalVariables.Global;
+import com.coiffure.jackcoiffure.myrequest.MyRequest;
 
 import java.util.ArrayList;
 
@@ -32,7 +35,11 @@ public class ServiceList extends AppCompatActivity {
     private RequestQueue mQueue;
     private ArrayList<String> data;
 
+    private MyRequest request;
+
+    private ProgressBar pb_loader;
     private String items[];
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,24 +48,33 @@ public class ServiceList extends AppCompatActivity {
 
         service_list = findViewById(R.id.service_list);
 
+        handler = new Handler();
+
         mQueue = Volley.newRequestQueue(this);
         data = new ArrayList<>();
+        pb_loader = findViewById(R.id.pb_loader);
+
+        pb_loader.setVisibility(View.VISIBLE);
 
         getServices();
 
-        String zizi_string = "" + data.size();
-        items = new String[] {"Coupe classique", "Coupe barbe", "Coupe femme", "Couleur"};
+        //items = new String[]{"Coupe classique", "Coupe barbe", "Coupe femme", "Couleur"};
 
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(ServiceList.this, android.R.layout.simple_list_item_1, items);
-        service_list.setAdapter(adapter);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(ServiceList.this, android.R.layout.simple_list_item_1, data);
+                service_list.setAdapter(adapter);
+                pb_loader.setVisibility(View.GONE);
+            }
+        }, 500);
 
         service_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 //Toast.makeText(ServiceList.this, data.get(position), Toast.LENGTH_SHORT).show();
 
-                Intent intent=new Intent(getApplicationContext(), TimeTable.class);
+                Intent intent = new Intent(getApplicationContext(), TimeTable.class);
                 intent.putExtra("service", data.get(position));
                 startActivity(intent);
                 finish();
