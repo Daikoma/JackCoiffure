@@ -35,11 +35,10 @@ public class TimeTable extends AppCompatActivity {
     private String date;
 
     private String service;
+    private String service_complet;
     private String day;
     private String hour;
     private String pseudo;
-    private String til_service;
-    private String til_day;
 
 
     private SessionManager sessionManager;
@@ -52,8 +51,8 @@ public class TimeTable extends AppCompatActivity {
         request = new MyRequest(this, mQueue);
 
         textView = findViewById(R.id.textView);
-        service = getIntent().getStringExtra("service");
-        String arr[] = service.split("\n");
+        service_complet = getIntent().getStringExtra("service");
+        String arr[] = service_complet.split("\n");
         service = arr[0];
 
         sessionManager = new SessionManager(this);
@@ -63,7 +62,7 @@ public class TimeTable extends AppCompatActivity {
         Date day_date = Calendar.getInstance().getTime();
         day = sdf.format(day_date);
 
-        textView.setText(day);
+        textView.setText(service_complet);
 
         timetable_list = findViewById(R.id.listView);
 
@@ -82,13 +81,12 @@ public class TimeTable extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 hour = items[position]+":00";
-                Toast.makeText(TimeTable.this, hour, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(TimeTable.this, hour, Toast.LENGTH_SHORT).show();
                 request.take_rdv(service, day, hour, pseudo, new MyRequest.TimeCallback() {
                     @Override
                     public void onSuccess(String message) {
-                        Intent intent=new Intent(getApplicationContext(), HomePage.class);
+                        Intent intent = new Intent(getApplicationContext(), HomePage.class);
                         startActivity(intent);
-                        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
                         finish();
                     }
 
@@ -99,10 +97,13 @@ public class TimeTable extends AppCompatActivity {
                     }
                 });
 
+                Intent intent = new Intent(getApplicationContext(), HomePage.class);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Rendez-vous ajouté.",Toast.LENGTH_SHORT).show();
+                finish();
 
 
-
-                    }
+            }
         });
 
     }
