@@ -67,7 +67,7 @@ public class ServiceList extends AppCompatActivity {
                 service_list.setAdapter(adapter);
                 pb_loader.setVisibility(View.GONE);
             }
-        }, 500);
+        }, 2000);
 
         service_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
