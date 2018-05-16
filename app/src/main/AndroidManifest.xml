@@ -22,6 +22,7 @@
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".HomePage"></activity>
         <activity android:name=".ServiceList"></activity>
+        <activity android:name=".TimeTable"></activity>
     </application>
 
 </manifest>

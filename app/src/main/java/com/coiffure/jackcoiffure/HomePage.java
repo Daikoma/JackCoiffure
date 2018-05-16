@@ -20,10 +20,10 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
 
-        btn_rdv = (Button) findViewById(R.id.btn_rdv);
+        btn_rdv = findViewById(R.id.btn_rdv);
         sessionManager = new SessionManager(this);
-        textView = (TextView) findViewById(R.id.tv_pseudo);
-        btn_logout = (Button) findViewById(R.id.btn_logout);
+        textView = findViewById(R.id.tv_pseudo);
+        btn_logout = findViewById(R.id.btn_logout);
 
         if (sessionManager.isLogged()){
             String pseudo= sessionManager.getPseudo();

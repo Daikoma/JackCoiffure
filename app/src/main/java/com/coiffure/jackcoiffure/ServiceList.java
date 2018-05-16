@@ -1,5 +1,7 @@
 package com.coiffure.jackcoiffure;
 
+import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,16 +47,21 @@ public class ServiceList extends AppCompatActivity {
         getServices();
 
         String zizi_string = "" + data.size();
-        items = new String[] {zizi_string, "caca"};
+        items = new String[] {"Coupe classique", "Coupe barbe", "Coupe femme", "Couleur"};
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(ServiceList.this, android.R.layout.simple_list_item_1, data);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(ServiceList.this, android.R.layout.simple_list_item_1, items);
         service_list.setAdapter(adapter);
 
         service_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(ServiceList.this, "" +data.size(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ServiceList.this, data.get(position), Toast.LENGTH_SHORT).show();
+
+                Intent intent=new Intent(getApplicationContext(), TimeTable.class);
+                intent.putExtra("service", data.get(position));
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -82,7 +89,7 @@ public class ServiceList extends AppCompatActivity {
                                 String description = service.getString("description");
                                 int price = service.getInt("price");
 
-                                data.add(name);
+                                data.add(name + "\n" + description + "\n" + price+"€");
                             }
 
                         } catch (JSONException e) {
